@@ -23,7 +23,7 @@ const BASE_URL = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`;
   article={{
     headline: essay.data.title,
     url: new URL(Astro.url),
-    image: new URL(`${BASE_URL}${essay.data.heroImage}`, Astro.site),
+    image: new URL(`${BASE_URL}${essay.data.images[0].src}`, Astro.site),
   }}
 >
 
@@ -51,21 +51,17 @@ const BASE_URL = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`;
       <h1>{essay.data.title}</h1>
       <p class="essay-label">{essay.data.label}</p>
       <p class="essay-introduction">{essay.data.introduction}</p>
-      <div class="essay-comparison">
-        <figure>
+      <div class:list={["essay-gallery", { "essay-gallery-single": essay.data.images.length === 1 }]}>
+        {essay.data.images.map((image) => (
+          <figure>
           <img
-            src={`${BASE_URL}${essay.data.heroImage}`}
-            alt="Brunelleschi's Dome in Florence"
+              src={`${BASE_URL}${image.src}`}
+              alt={image.alt}
+              loading="lazy"
           />
-          <figcaption>Santa Maria del Fiore, Florence</figcaption>
+            <figcaption>{image.caption}</figcaption>
         </figure>
-        <figure>
-          <img
-            src={`${BASE_URL}${essay.data.secondaryImage}`}
-            alt="Compañía de Jesús in Quito"
-          />
-          <figcaption>Compañía de Jesús, Quito</figcaption>
-        </figure>
+        ))}
       </div>
       <div class="essay-body" lang="en">
         <Content />

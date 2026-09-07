@@ -10,8 +10,11 @@ const essays = defineCollection({
     seoDescription: z.string().optional(),
     label: z.string(),
     introduction: z.string(),
-    heroImage: z.string(),
-    secondaryImage: z.string(),
+    images: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+      caption: z.string(),
+    })).min(1),
   }),
 });
 

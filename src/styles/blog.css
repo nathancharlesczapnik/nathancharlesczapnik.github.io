@@ -162,7 +162,7 @@
   line-height: 1.75;
 }
 
-.essay-comparison {
+.essay-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
@@ -170,23 +170,64 @@
   margin: 48px 0 0 -80px;
 }
 
-.essay-comparison figure {
+.essay-gallery figure {
   margin: 0;
 }
 
-.essay-comparison img {
+.essay-gallery img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
   object-position: center;
+  background: var(--panel);
 }
 
-.essay-comparison figcaption {
+.essay-gallery figcaption {
   padding-top: 10px;
   color: var(--text-light);
   font-size: 14px;
+  line-height: 1.5;
   letter-spacing: .02em;
+  overflow-wrap: anywhere;
+}
+
+.essay-gallery-single {
+  grid-template-columns: 1fr;
+}
+
+.essay-body h2 {
+  margin: 56px 0 24px;
+  color: var(--text);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.essay-body sup {
+  font-size: .7em;
+  line-height: 0;
+}
+
+.essay-body sup a,
+.essay-footnotes a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+.essay-footnotes {
+  margin: 56px 0;
+  padding-left: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.essay-body .essay-footnotes li {
+  margin-top: 16px;
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .essay-body {
@@ -303,7 +344,7 @@
     margin-top: 44px;
   }
 
-  .essay-comparison {
+  .essay-gallery {
     width: 100%;
     margin-left: 0;
   }
@@ -315,8 +356,13 @@
     line-height: 1.7;
   }
 
-  .essay-comparison {
+  .essay-gallery {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .essay-gallery img {
+    height: auto;
+    max-height: 560px;
   }
 }
